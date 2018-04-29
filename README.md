@@ -68,4 +68,39 @@ Realm Database Demo Application
         // Use the config
         Realm.setDefaultConfiguration(config);
       
+* Insert Record to the database
+
+      // create new instance of realm
+      Realm realm = Realm.getDefaultInstance();
+      // start transaction with realm then execute
+      realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.copyToRealm(student); // add student model to realm dab
+            }
+        });
+        
+* Update Record
+
+      realm.executeTransaction(new Realm.Transaction() {
+                  @Override
+                  public void execute(Realm realm) {
+                      realm.copyToRealmOrUpdate(student); // update student model
+                  }
+              });
+              
+* Delete Record
+       
+       // find item to delete
+      final Student studentToDelete = realm.where(Student.class)
+                      .equalTo("id", id)
+                      .findFirst();
+
+              realm.executeTransaction(new Realm.Transaction() {
+                  @Override
+                  public void execute(Realm realm) {
+                      studentToDelete.deleteFromRealm();
+                  }
+              });
+      
      
