@@ -3,6 +3,7 @@ package com.roshan.realmdemo.data;
 import com.roshan.realmdemo.model.Student;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class RealmManager {
 
@@ -72,6 +73,11 @@ public class RealmManager {
         checkForOpenRealm();
         final Student student = realm.where(Student.class).equalTo("id",id).findFirst();
         return student;
+    }
+
+    public static RealmResults<Student> getAll(){
+        checkForOpenRealm();
+        return realm.where(Student.class).findAll();
     }
 
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RealmDemo</string>
+    <string name="action_add_student">Add Student</string>
 </resources>
